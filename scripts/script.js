@@ -9,12 +9,12 @@ function displayTime()
   l.innerHTML = now.toString();
   u.innerHTML = now.toUTCString();
   if(optionValue)
-{
-  optionValue = -optionValue;
-  now.setHours(now.getUTCHours() - optionValue);
-}
+  {
+    optionValue = -optionValue;
+    now.setHours(now.getUTCHours() - optionValue - 2);
+  }
   //else { now.setHours(now.getUTCHours() + optionValue); }
-  s.innerHTML = now.toString();
+  s.innerHTML = now.toUTCString();
   setTimeout(displayTime, 1000);
 }
 
