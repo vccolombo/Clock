@@ -8,13 +8,16 @@ function displayTime()
   var now = new Date();
   l.innerHTML = now.toString();
   u.innerHTML = now.toUTCString();
-  if(optionValue)
-  {
-    optionValue = -optionValue;
-    now.setHours(now.getUTCHours() - optionValue);
-  }
-  //else { now.setHours(now.getUTCHours() + optionValue); }
-  s.innerHTML = now.toLocaleString();
+  /* The line below
+  sets the hour of selectedClock, by getting UTC, adding the value selected by the user
+  and sums the difference timezone
+      */
+  now.setHours(now.getUTCHours() + Number(optionValue) + (now.getHours() - now.getUTCHours()));
+  //Because we will use UTC now, and it's important to evaluate the time difference btwen
+  //the user and UTC
+  //UTC = Local - timezone
+  s.innerHTML = now.toUTCString() + String(optionValue) + "00";
+
   setTimeout(displayTime, 1000);
 }
 
